@@ -8,7 +8,7 @@ export LIBRARY_PATH="$PREFIX/lib"
 
 ./configure --prefix=$PREFIX \
             --disable-dependency-tracking \
-            --with-cuda=$PREFIX
+            --with-cuda=$CONDA_PREFIX
 
 make -j 4
 make install
