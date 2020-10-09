@@ -15,14 +15,13 @@ build:
     number: 2
     string: cuda{{ cudatoolkit | replace(".*", "") }}_{{ PKG_BUILDNUM }}
     script_env:
-      - OPEN_CE_CUDA_HOME
+      - CUDA_HOME
 
 requirements:
     build:
         - perl 5.26.0
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
-        - {{ compiler('cuda') }}
         - make
     run:
         - cudatoolkit {{ cudatoolkit }}
