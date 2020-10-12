@@ -12,7 +12,7 @@ source:
     sha256: {{ sha256 }}
 
 build:
-    number: 2
+    number: 3
     string: cuda{{ cudatoolkit | replace(".*", "") }}_{{ PKG_BUILDNUM }}
     script_env:
       - CUDA_HOME
@@ -25,6 +25,7 @@ requirements:
         - make
     run:
         - cudatoolkit {{ cudatoolkit }}
+        - mpi 1.0 openmpi
 
 test:
     requires:
