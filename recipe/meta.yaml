@@ -14,8 +14,10 @@ source:
 build:
     number: 3
     string: cuda{{ cudatoolkit | replace(".*", "") }}_{{ PKG_BUILDNUM }}
+{% if build_type == 'cuda' %}
     script_env:
       - CUDA_HOME
+{% endif %}
 
 requirements:
     build:
