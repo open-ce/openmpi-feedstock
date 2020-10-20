@@ -25,7 +25,7 @@ requirements:
         - make
     run:
         - cudatoolkit {{ cudatoolkit }}
-        - mpi 1.0 openmpi
+        - mpi=1.0=openmpi
 
 test:
     requires:
