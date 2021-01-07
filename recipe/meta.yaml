@@ -12,10 +12,12 @@ source:
     sha256: {{ sha256 }}
 
 build:
-    number: 5
+    number: 6
+{% if build_type == 'cuda' %}
     string: cuda{{ cudatoolkit | replace(".*", "") }}_{{ PKG_BUILDNUM }}
     script_env:
       - CUDA_HOME
+{% endif %}
 
 requirements:
     build:
@@ -24,7 +26,7 @@ requirements:
         - {{ compiler('cxx') }}
         - make
     run:
-        - cudatoolkit {{ cudatoolkit }}
+        - cudatoolkit {{ cudatoolkit }}    # [build_type == 'cuda']
         - mpi 1.0 openmpi
 
 test:
