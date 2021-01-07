@@ -6,9 +6,13 @@ export CXX=$(basename "$CXX")
 
 export LIBRARY_PATH="$PREFIX/lib"
 
+BUILD_OPTS=""
+if [ "${build_type}" = "cuda" ]; then
+    BUILD_OPTS="--with-cuda=$CUDA_HOME"
+fi
 ./configure --prefix=$PREFIX \
             --disable-dependency-tracking \
-            --with-cuda=$CUDA_HOME
+            $BUILD_OPTS
 
 make -j 4
 make install
