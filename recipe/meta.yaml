@@ -18,6 +18,9 @@ build:
     script_env:
       - CUDA_HOME
 {% endif %}
+  ignore_run_exports:
+    - libgcc-ng
+    - libstdcxx-ng
 
 requirements:
     build:
@@ -35,15 +38,15 @@ requirements:
     run:
         - cudatoolkit {{ cudatoolkit }}    # [build_type == 'cuda']
         - mpi 1.0 openmpi
+        # Use pins to control cos6/cos7 match
+        - libgcc-ng  {{ libgcc }}
+        - libstdcxx-ng  {{ libstdcxx }}
 
 test:
     requires:
         - {{ compiler('fortran') }}
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
-        # Use pins to control cos6/cos7 match
-        - libgcc-ng  {{ libgcc }}
-        - libstdcxx-ng  {{ libstdcxx }}
     files:
         - tests/helloworld.c
         - tests/helloworld.cxx
