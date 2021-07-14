@@ -12,15 +12,12 @@ source:
     sha256: {{ sha256 }}
 
 build:
-    number: 7
+    number: 8
 {% if build_type == 'cuda' %}
     string: cuda{{ cudatoolkit | replace(".*", "") }}_{{ PKG_BUILDNUM }}
     script_env:
       - CUDA_HOME
 {% endif %}
-    ignore_run_exports:
-      - libgcc-ng
-      - libstdcxx-ng
 
 requirements:
     build:
@@ -38,9 +35,6 @@ requirements:
     run:
         - cudatoolkit {{ cudatoolkit }}    # [build_type == 'cuda']
         - mpi 1.0 openmpi
-        # Use pins to control cos6/cos7 match
-        - libgcc-ng  {{ libgcc }}
-        - libstdcxx-ng  {{ libstdcxx }}
 
 test:
     requires:
