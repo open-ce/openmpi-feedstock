@@ -25,6 +25,14 @@ requirements:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         - make
+        # Use pins to control cos6/cos7 match
+        - libgcc-ng  {{ libgcc }}         # [x86_64 and c_compiler_version == "7.2.*"]
+        - libstdcxx-ng  {{ libstdcxx }}   # [x86_64 and c_compiler_version == "7.2.*"]
+    host:
+        # Use pins to control cos6/cos7 match
+        - libgcc-ng  {{ libgcc }}         # [x86_64 and c_compiler_version == "7.2.*"]
+        - libstdcxx-ng  {{ libstdcxx }}   # [x86_64 and c_compiler_version == "7.2.*"]
+
     run:
         - cudatoolkit {{ cudatoolkit }}    # [build_type == 'cuda']
         - mpi 1.0 openmpi
