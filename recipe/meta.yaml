@@ -12,7 +12,7 @@ source:
     sha256: {{ sha256 }}
 
 build:
-    number: 2
+    number: 3
 {% if build_type == 'cuda' %}
     string: cuda{{ cudatoolkit | replace(".*", "") }}_{{ PKG_BUILDNUM }}
     script_env:
@@ -22,8 +22,8 @@ build:
 requirements:
     build:
         - perl 5.26.0
-        - {{ compiler('c') }}
-        - {{ compiler('cxx') }}
+        - {{ compiler('c') }}    #[ppc_arch != "p10"]
+        - {{ compiler('cxx') }}  #[ppc_arch != "p10"]
         - make
         # Use pins to control cos6/cos7 match
         - libgcc-ng  {{ libgcc }}         # [x86_64 and c_compiler_version == "7.2.*"]
@@ -38,10 +38,10 @@ requirements:
         - mpi 1.0 openmpi
 
 test:
-    requires:
-        - {{ compiler('fortran') }}
-        - {{ compiler('c') }}
-        - {{ compiler('cxx') }}
+    requires:                           #[ppc_arch != "p10"]
+        - {{ compiler('fortran') }}     #[ppc_arch != "p10"]
+        - {{ compiler('c') }}           #[ppc_arch != "p10"]
+        - {{ compiler('cxx') }}         #[ppc_arch != "p10"]
     files:
         - tests/helloworld.c
         - tests/helloworld.cxx
