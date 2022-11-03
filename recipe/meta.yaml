@@ -21,7 +21,7 @@ build:
 
 requirements:
     build:
-        - perl 5.26.0
+        - perl 5.26.*
         - {{ compiler('c') }}    #[ppc_arch != "p10"]
         - {{ compiler('cxx') }}  #[ppc_arch != "p10"]
         - make
