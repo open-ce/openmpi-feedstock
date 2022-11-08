@@ -12,7 +12,7 @@ source:
     sha256: {{ sha256 }}
 
 build:
-    number: 4
+    number: 5
 {% if build_type == 'cuda' %}
     string: cuda{{ cudatoolkit | replace(".*", "") }}_{{ PKG_BUILDNUM }}
     script_env:
@@ -21,7 +21,7 @@ build:
 
 requirements:
     build:
-        - perl 5.26.0
+        - perl 5.26.*
         - {{ compiler('c') }}    #[ppc_arch != "p10"]
         - {{ compiler('cxx') }}  #[ppc_arch != "p10"]
         - make
