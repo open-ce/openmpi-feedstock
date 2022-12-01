@@ -1,5 +1,5 @@
-{% set version = "4.1.1" %}
-{% set sha256 = "e24f7a778bd11a71ad0c14587a7f5b00e68a71aa5623e2157bafee3d44c07cda" %}
+{% set version = "4.1.4" %}
+{% set sha256 = "92912e175fd1234368c8730c03f4996fe5942e7479bb1d10059405e7f2b3930d" %}
 {% set major = version.rpartition('.')[0] %}
 
 package:
@@ -12,7 +12,7 @@ source:
     sha256: {{ sha256 }}
 
 build:
-    number: 5
+    number: 1
 {% if build_type == 'cuda' %}
     string: cuda{{ cudatoolkit | replace(".*", "") }}_{{ PKG_BUILDNUM }}
     script_env:
