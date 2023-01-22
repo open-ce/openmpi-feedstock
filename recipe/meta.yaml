@@ -12,11 +12,13 @@ source:
     sha256: {{ sha256 }}
 
 build:
-    number: 1
+    number: 2
 {% if build_type == 'cuda' %}
-    string: cuda{{ cudatoolkit | replace(".*", "") }}_{{ PKG_BUILDNUM }}
+    string: {{ build_type }}{{ cudatoolkit | replace(".*", "") }}_{{ PKG_BUILDNUM }}
     script_env:
       - CUDA_HOME
+{% else %}
+    string: {{ build_type }}_{{ PKG_BUILDNUM }}
 {% endif %}
 
 requirements:
@@ -36,6 +38,7 @@ requirements:
     run:
         - cudatoolkit {{ cudatoolkit }}    # [build_type == 'cuda']
         - mpi 1.0 openmpi
+        - zlib {{ zlib }}
 
 test:
     requires:                           #[ppc_arch != "p10"]
