@@ -20,7 +20,7 @@ set -e
 pushd ./tests
 
 mpicc helloworld.c -o helloworld_c
-mpirun --allow-run-as-root -n 4 ./helloworld_c
+mpirun --allow-run-as-root -n 2 ./helloworld_c
 
 popd
 
