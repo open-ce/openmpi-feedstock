@@ -1,6 +1,6 @@
 #!/bin/bash
 # *****************************************************************
-# (C) Copyright IBM Corp. 2020, 2021. All Rights Reserved.
+# (C) Copyright IBM Corp. 2020, 2023. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ set -e
 pushd ./tests
 
 mpicc helloworld.c -o helloworld_c
-mpirun --allow-run-as-root -n 4 ./helloworld_c
+mpirun --allow-run-as-root -n 2 ./helloworld_c
 
 popd
 
